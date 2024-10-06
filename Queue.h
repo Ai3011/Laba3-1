@@ -7,32 +7,32 @@
 struct Queue {
     LinkedList list;
 
-    // Добавление элемента в очередь
+    // Р”РѕР±Р°РІР»РµРЅРёРµ СЌР»РµРјРµРЅС‚Р° РІ РѕС‡РµСЂРµРґСЊ
     void push(const string& element) {
         list.addTail(element);
     }
 
-    // Удаление элемента из очереди
+    // РЈРґР°Р»РµРЅРёРµ СЌР»РµРјРµРЅС‚Р° РёР· РѕС‡РµСЂРµРґРё
     void pop() {
         list.removeHead();
     }
 
-    // Вывод содержимого очереди
+    // Р’С‹РІРѕРґ СЃРѕРґРµСЂР¶РёРјРѕРіРѕ РѕС‡РµСЂРµРґРё
     void read() const {
         list.read();
     }
 
-    // Загрузка данных из файла
+    // Р—Р°РіСЂСѓР·РєР° РґР°РЅРЅС‹С… РёР· С„Р°Р№Р»Р°
     void loadFromFile(const string& filename) {
-        list.loadFromFile(filename); // Делегирование функции LinkedList
+        list.loadFromFile(filename); // Р”РµР»РµРіРёСЂРѕРІР°РЅРёРµ С„СѓРЅРєС†РёРё LinkedList
     }
 
-    // Сохранение данных в файл
+    // РЎРѕС…СЂР°РЅРµРЅРёРµ РґР°РЅРЅС‹С… РІ С„Р°Р№Р»
     void saveToFile(const string& filename) const {
-        list.saveToFile(filename); // Делегирование функции LinkedList
+        list.saveToFile(filename); // Р”РµР»РµРіРёСЂРѕРІР°РЅРёРµ С„СѓРЅРєС†РёРё LinkedList
     }
 
-    // Очистка очереди
+    // РћС‡РёСЃС‚РєР° РѕС‡РµСЂРµРґРё
     void clear() {
         while (list.head) {
             list.removeHead();
