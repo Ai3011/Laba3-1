@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <windows.h>
 #include "Array.h"
 #include "List.h"
@@ -35,20 +35,20 @@ int main() {
         if (command == "array") {
             string arrayCommand;
             while (true) {
-                cout << "Команды для массива (add, insert, get, remove, replace, read, lenght, save, load, exit): ";
+                cout << "Команды для массива (MPUSH, MINSERT, MGET, MREMOVE, MREPLACE, PRINT, MLENGHT, SAVE, LOAD, EXIT): ";
                 getline(cin, arrayCommand);
 
-                if (arrayCommand == "add") {
+                if (arrayCommand == "MPUSH") {
                     string element;
                     cout << "Введите элемент: ";
                     getline(cin, element);
                     arr.add(element);
                 }
-                else if (arrayCommand == "lenght") {
+                else if (arrayCommand == "MLENGHT") {
                     string element;
                     cout << "Длина массива : " << arr.length() << endl;
                 }
-                else if (arrayCommand == "insert") {
+                else if (arrayCommand == "MINSERT") {
                     size_t index;
                     string element;
                     cout << "Введите индекс и элемент: ";
@@ -62,7 +62,7 @@ int main() {
                         cerr << "Ошибка: " << e.what() << endl;
                     }
                 }
-                else if (arrayCommand == "get") {
+                else if (arrayCommand == "MGET") {
                     size_t index;
                     cout << "Введите индекс: ";
                     cin >> index;
@@ -74,7 +74,7 @@ int main() {
                         cerr << "Ошибка: " << e.what() << endl;
                     }
                 }
-                else if (arrayCommand == "remove") {
+                else if (arrayCommand == "MREMOVE") {
                     size_t index;
                     cout << "Введите индекс: ";
                     cin >> index;
@@ -86,7 +86,7 @@ int main() {
                         cerr << "Ошибка: " << e.what() << endl;
                     }
                 }
-                else if (arrayCommand == "replace") {
+                else if (arrayCommand == "MREPLACE") {
                     size_t index;
                     string element;
                     cout << "Введите индекс и элемент: ";
@@ -100,10 +100,10 @@ int main() {
                         cerr << "Ошибка: " << e.what() << endl;
                     }
                 }
-                else if (arrayCommand == "read") {
+                else if (arrayCommand == "PRINT") {
                     arr.read();
                 }
-                else if (arrayCommand == "save") {
+                else if (arrayCommand == "SAVE") {
                     string saveFilename;
                     cout << "Введите имя файла для сохранения: ";
                     getline(cin, saveFilename);
@@ -115,7 +115,7 @@ int main() {
                         cerr << "Ошибка: " << e.what() << endl;
                     }
                 }
-                else if (arrayCommand == "load") {
+                else if (arrayCommand == "LOAD") {
                     string loadFilename;
                     cout << "Введите имя файла для загрузки: ";
                     getline(cin, loadFilename);
@@ -127,7 +127,7 @@ int main() {
                         cerr << "Ошибка: " << e.what() << endl;
                     }
                 }
-                else if (arrayCommand == "exit") {
+                else if (arrayCommand == "EXIT") {
                     break;
                 }
                 else {
@@ -139,26 +139,26 @@ int main() {
         else if (command == "list") {
             string listCommand;
             while (true) {
-                cout << "Команды для односвязного списка (addHead, addTail, removeHead, removeTail, read, find, save, load, exit): ";
+                cout << "Команды для односвязного списка (LPUSHHEAD, LPUSHTAIL, LDELHEAD, LDELTAIL, PRINT, LFIND, SAVE, LOAD, EXIT): ";
                 getline(cin, listCommand);
 
-                if (listCommand == "addHead") {
+                if (listCommand == "LPUSHHEAD") {
                     string element;
                     cout << "Введите элемент: ";
                     getline(cin, element);
                     linkedList.addHead(element);
                 }
-                else if (listCommand == "addTail") {
+                else if (listCommand == "LPUSHTAIL") {
                     string element;
                     cout << "Введите элемент: ";
                     getline(cin, element);
                     linkedList.addTail(element);
                 }
-                else if (listCommand == "find") {
+                else if (listCommand == "LFIND") {
                     string element;
                     cout << "Введите элемент для поиска: ";
                     getline(cin, element);
-                    int index = linkedList.find(element); // Метод теперь возвращает индекс
+                    int index = linkedList.find(element); 
                     if (index != -1) {
                         cout << "Элемент найден на позиции: " << index << endl;
                     }
@@ -166,16 +166,16 @@ int main() {
                         cout << "Элемент не найден." << endl;
                     }
                 }
-                else if (listCommand == "removeHead") {
+                else if (listCommand == "LDELHEAD") {
                     linkedList.removeHead();
                 }
-                else if (listCommand == "removeTail") {
+                else if (listCommand == "LDELTAIL") {
                     linkedList.removeTail();
                 }
-                else if (listCommand == "read") {
+                else if (listCommand == "PRINT") {
                     linkedList.read();
                 }
-                else if (listCommand == "save") {
+                else if (listCommand == "SAVE") {
                     string saveFilename;
                     cout << "Введите имя файла для сохранения: ";
                     getline(cin, saveFilename);
@@ -187,7 +187,7 @@ int main() {
                         cerr << "Ошибка: " << e.what() << endl;
                     }
                 }
-                else if (listCommand == "load") {
+                else if (listCommand == "LOAD") {
                     string loadFilename;
                     cout << "Введите имя файла для загрузки: ";
                     getline(cin, loadFilename);
@@ -199,7 +199,7 @@ int main() {
                         cerr << "Ошибка: " << e.what() << endl;
                     }
                 }
-                else if (listCommand == "exit") {
+                else if (listCommand == "EXIT") {
                     break;
                 }
                 else {
@@ -211,31 +211,31 @@ int main() {
         else if (command == "doubly_list") {
             string doublyListCommand;
             while (true) {
-                cout << "Команды для двусвязного списка (addHead, addTail, removeHead, removeTail, read, find, save, load, exit): ";
+                cout << "Команды для двусвязного списка (DLPUSHHEAD, DLPUSHTAIL, DLDELHEAD, DLDELTAIL, PRINT, DLFIND, SAVE, LOAD, EXIT): ";
                 getline(cin, doublyListCommand);
 
-                if (doublyListCommand == "addHead") {
+                if (doublyListCommand == "DLPUSHHEAD") {
                     string element;
                     cout << "Введите элемент: ";
                     getline(cin, element);
                     doublyLinkedList.addHead(element);
                 }
-                else if (doublyListCommand == "addTail") {
+                else if (doublyListCommand == "DLPUSHTAIL") {
                     string element;
                     cout << "Введите элемент: ";
                     getline(cin, element);
                     doublyLinkedList.addTail(element);
                 }
-                else if (doublyListCommand == "removeHead") {
+                else if (doublyListCommand == "DLDELHEAD") {
                     doublyLinkedList.removeHead();
                 }
-                else if (doublyListCommand == "removeTail") {
+                else if (doublyListCommand == "DLDELTAIL") {
                     doublyLinkedList.removeTail();
                 }
-                else if (doublyListCommand == "read") {
+                else if (doublyListCommand == "PRINT") {
                     doublyLinkedList.read();
                 }
-                else if (doublyListCommand == "find") {
+                else if (doublyListCommand == "DLFIND") {
                     string element;
                     cout << "Введите элемент для поиска: ";
                     getline(cin, element);
@@ -248,7 +248,7 @@ int main() {
                     }
                 }
 
-                else if (doublyListCommand == "save") {
+                else if (doublyListCommand == "SAVE") {
                     string saveFilename;
                     cout << "Введите имя файла для сохранения: ";
                     getline(cin, saveFilename);
@@ -260,7 +260,7 @@ int main() {
                         cerr << "Ошибка: " << e.what() << endl;
                     }
                 }
-                else if (doublyListCommand == "load") {
+                else if (doublyListCommand == "LOAD") {
                     string loadFilename;
                     cout << "Введите имя файла для загрузки: ";
                     getline(cin, loadFilename);
@@ -272,7 +272,7 @@ int main() {
                         cerr << "Ошибка: " << e.what() << endl;
                     }
                 }
-                else if (doublyListCommand == "exit") {
+                else if (doublyListCommand == "EXIT") {
                     break;
                 }
                 else {
@@ -284,22 +284,22 @@ int main() {
         else if (command == "stack") {
             string stackCommand;
             while (true) {
-                cout << "Команды для стека (push, pop, read, save, load, exit): ";
+                cout << "Команды для стека (SPUSH, SPOP, PRINT, SAVE, LOAD, EXIT): ";
                 getline(cin, stackCommand);
 
-                if (stackCommand == "push") {
+                if (stackCommand == "SPUSH") {
                     string element;
                     cout << "Введите элемент: ";
                     getline(cin, element);
                     stack.push(element);
                 }
-                else if (stackCommand == "pop") {
+                else if (stackCommand == "SPOP") {
                     stack.pop();
                 }
-                else if (stackCommand == "read") {
+                else if (stackCommand == "PRINT") {
                     stack.read();
                 }
-                else if (stackCommand == "save") {
+                else if (stackCommand == "SAVE") {
                     string saveFilename;
                     cout << "Введите имя файла для сохранения: ";
                     getline(cin, saveFilename);
@@ -311,7 +311,7 @@ int main() {
                         cerr << "Ошибка: " << e.what() << endl;
                     }
                 }
-                else if (stackCommand == "load") {
+                else if (stackCommand == "LOAD") {
                     string loadFilename;
                     cout << "Введите имя файла для загрузки: ";
                     getline(cin, loadFilename);
@@ -323,7 +323,7 @@ int main() {
                         cerr << "Ошибка: " << e.what() << endl;
                     }
                 }
-                else if (stackCommand == "exit") {
+                else if (stackCommand == "EXIT") {
                     break;
                 }
                 else {
@@ -335,22 +335,22 @@ int main() {
         else if (command == "queue") {
             string queueCommand;
             while (true) {
-                cout << "Команды для очереди (push, pop, read, save, load, exit): ";
+                cout << "Команды для очереди (QPUSH, QPOP, PRINT, SAVE, LOAD, EXIT): ";
                 getline(cin, queueCommand);
 
-                if (queueCommand == "push") {
+                if (queueCommand == "QPUSH") {
                     string element;
                     cout << "Введите элемент: ";
                     getline(cin, element);
                     queue.push(element);
                 }
-                else if (queueCommand == "pop") {
+                else if (queueCommand == "QPOP") {
                     queue.pop();
                 }
-                else if (queueCommand == "read") {
+                else if (queueCommand == "PRINT") {
                     queue.read();
                 }
-                else if (queueCommand == "save") {
+                else if (queueCommand == "SAVE") {
                     string saveFilename;
                     cout << "Введите имя файла для сохранения: ";
                     getline(cin, saveFilename);
@@ -362,7 +362,7 @@ int main() {
                         cerr << "Ошибка: " << e.what() << endl;
                     }
                 }
-                else if (queueCommand == "load") {
+                else if (queueCommand == "LOAD") {
                     string loadFilename;
                     cout << "Введите имя файла для загрузки: ";
                     getline(cin, loadFilename);
@@ -374,7 +374,7 @@ int main() {
                         cerr << "Ошибка: " << e.what() << endl;
                     }
                 }
-                else if (queueCommand == "exit") {
+                else if (queueCommand == "EXIT") {
                     break;
                 }
                 else {
@@ -385,29 +385,29 @@ int main() {
         else if (command == "avl") {
             string avlCommand;
             while (true) {
-                cout << "Команды для AVL-дерева (add, remove, print, save, load, find, exit): ";
+                cout << "Команды для AVL-дерева (TINSERT, TDEL, PRINT, SAVE, LOAD, TFIND, EXIT): ";
                 getline(cin, avlCommand);
 
-                if (avlCommand == "add") {
+                if (avlCommand == "TINSERT") {
                     int key;
                     cout << "Введите ключ: ";
                     cin >> key;
                     cin.ignore();
                     avlTree = avlInsert(avlTree, key);
                 }
-                else if (avlCommand == "remove") {
+                else if (avlCommand == "TDEL") {
                     int key;
                     cout << "Введите ключ для удаления: ";
                     cin >> key;
                     cin.ignore();
                     avlTree = avlRemove(avlTree, key);
                 }
-                else if (avlCommand == "print") {
+                else if (avlCommand == "PRINT") {
                     cout << "Дерево (по уровням): \n";
                     avlPrintByLevels(avlTree);
                     cout << endl;
                 }
-                else if (avlCommand == "save") {
+                else if (avlCommand == "SAVE") {
                     string filename;
                     cout << "Введите имя файла для сохранения: ";
                     getline(cin, filename);
@@ -421,7 +421,7 @@ int main() {
                         cout << "Ошибка открытия файла!" << endl;
                     }
                 }
-                else if (avlCommand == "load") {
+                else if (avlCommand == "LOAD") {
                     string filename;
                     cout << "Введите имя файла для загрузки: ";
                     getline(cin, filename);
@@ -435,7 +435,7 @@ int main() {
                         cout << "Ошибка открытия файла!" << endl;
                     }
                 }
-                else if (avlCommand == "find") {
+                else if (avlCommand == "TFIND") {
                     int key;
                     cout << "Введите ключ для поиска: ";
                     cin >> key;
@@ -448,7 +448,7 @@ int main() {
                         cout << "Элемент с ключом " << key << " не найден." << endl;
                     }
                 }
-                else if (avlCommand == "exit") {
+                else if (avlCommand == "EXIT") {
                     break;
                 }
                 else {
@@ -460,10 +460,10 @@ int main() {
         else if (command == "hashtable") {
         string hashTableCommand;
         while (true) {
-            cout << "Команды для хэш-таблицы (insert, get, remove, clear, print, load, save, exit): ";
+            cout << "Команды для хэш-таблицы (HSET, HGET, HREMOVE, HCLEAR, PRINT, LOAD, SAVE, EXIT): ";
             getline(cin, hashTableCommand);
 
-            if (hashTableCommand == "insert") {
+            if (hashTableCommand == "HSET") {
                 string key, value;
                 cout << "Введите ключ: ";
                 getline(cin, key);
@@ -472,7 +472,7 @@ int main() {
                 insert(ht, key, value);
                 cout << "Элемент добавлен." << endl;
             }
-            else if (hashTableCommand == "get") {
+            else if (hashTableCommand == "HGET") {
                 string key;
                 int index;
                 cout << "Введите ключ: ";
@@ -489,23 +489,23 @@ int main() {
                     cerr << "Ошибка: " << e.what() << endl; // Обработка исключения и вывод сообщения об ошибке
                 }
             }
-            else if (hashTableCommand == "remove") {
+            else if (hashTableCommand == "HREMOVE") {
                 string key;
                 cout << "Введите ключ для удаления: ";
                 getline(cin, key);
                 remove(ht, key);
                 cout << "Элемент удалён." << endl;
             }
-            else if (hashTableCommand == "clear") {
+            else if (hashTableCommand == "HCLEAR") {
                 clearHashTable(ht);
                 cout << "Хэш-таблица очищена." << endl;
                 initHashTable(ht); // Реинициализация после очистки
             }
-            else if (hashTableCommand == "print") {
+            else if (hashTableCommand == "PRINT") {
                 cout << "Содержимое хэш-таблицы:" << endl;
                 printHashTable(ht); // Выводим содержимое хэш-таблицы
             }
-            else if (hashTableCommand == "load") {
+            else if (hashTableCommand == "LOAD") {
                 string filename;
                 cout << "Введите имя файла для загрузки: ";
                 getline(cin, filename);
@@ -517,7 +517,7 @@ int main() {
                     cerr << "Ошибка: " << e.what() << endl;
                 }
             }
-            else if (hashTableCommand == "save") {
+            else if (hashTableCommand == "SAVE") {
                 string filename;
                 cout << "Введите имя файла для сохранения: ";
                 getline(cin, filename);
@@ -529,7 +529,7 @@ int main() {
                     cerr << "Ошибка: " << e.what() << endl;
                 }
             }
-            else if (hashTableCommand == "exit") {
+            else if (hashTableCommand == "EXIT") {
                 clearHashTable(ht); // Очистка перед выходом
                 break;
             }
