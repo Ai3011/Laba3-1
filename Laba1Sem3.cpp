@@ -1,5 +1,6 @@
 #include <iostream>
-#include <windows.h>
+#include <limits>
+#include <sstream>
 #include "Array.h"
 #include "List.h"
 #include "Dlist.h"
@@ -13,9 +14,6 @@ using namespace std;
 
 int main() {
     setlocale(LC_ALL, "RU");
-    SetConsoleOutputCP(1251);
-    SetConsoleCP(1251);
-
 
     StringArray arr;
     LinkedList linkedList;
@@ -383,79 +381,107 @@ int main() {
             }
         }
         else if (command == "avl") {
-            string avlCommand;
-            while (true) {
-                cout << "Команды для AVL-дерева (TINSERT, TDEL, PRINT, SAVE, LOAD, TFIND, EXIT): ";
-                getline(cin, avlCommand);
+        string avlCommand;
+        while (true) {
+            cout << "Команды для AVL-дерева (TINSERT, TDEL, PRINT, SAVE, LOAD, TFIND, EXIT): ";
+            getline(cin, avlCommand);
 
-                if (avlCommand == "TINSERT") {
-                    int key;
-                    cout << "Введите ключ: ";
-                    cin >> key;
-                    cin.ignore();
-                    avlTree = avlInsert(avlTree, key);
-                }
-                else if (avlCommand == "TDEL") {
-                    int key;
-                    cout << "Введите ключ для удаления: ";
-                    cin >> key;
-                    cin.ignore();
-                    avlTree = avlRemove(avlTree, key);
-                }
-                else if (avlCommand == "PRINT") {
-                    cout << "Дерево (по уровням): \n";
-                    avlPrintByLevels(avlTree);
-                    cout << endl;
-                }
-                else if (avlCommand == "SAVE") {
-                    string filename;
-                    cout << "Введите имя файла для сохранения: ";
-                    getline(cin, filename);
-                    ofstream file(filename);
-                    if (file.is_open()) {
-                        avlSaveToFile(avlTree, file);
-                        file.close();
-                        cout << "Дерево сохранено в файл." << endl;
+            if (avlCommand == "TINSERT") {
+                string input;
+                int key;
+                cout << "Введите ключ: ";
+                while (true) {
+                    getline(cin, input);
+                    stringstream ss(input);
+                    if (ss >> key && ss.eof()) { // Проверяем, удалось ли успешно считать целое число и это конец строки
+                        break; // Выходим из цикла, если ввод корректный
                     }
                     else {
-                        cout << "Ошибка открытия файла!" << endl;
+                        cout << "Неверный ввод. Пожалуйста, введите целое число: ";
                     }
                 }
-                else if (avlCommand == "LOAD") {
-                    string filename;
-                    cout << "Введите имя файла для загрузки: ";
-                    getline(cin, filename);
-                    ifstream file(filename);
-                    if (file.is_open()) {
-                        avlTree = avlLoadFromFile(avlTree, file);
-                        file.close();
-                        cout << "Дерево загружено из файла." << endl;
+                avlTree = avlInsert(avlTree, key);
+            }
+            else if (avlCommand == "TDEL") {
+                string input;
+                int key;
+                cout << "Введите ключ для удаления: ";
+                while (true) {
+                    getline(cin, input);
+                    stringstream ss(input);
+                    if (ss >> key && ss.eof()) { // Проверяем, удалось ли успешно считать целое число и это конец строки
+                        break; // Выходим из цикла, если ввод корректный
                     }
                     else {
-                        cout << "Ошибка открытия файла!" << endl;
+                        cout << "Неверный ввод. Пожалуйста, введите целое число: ";
                     }
                 }
-                else if (avlCommand == "TFIND") {
-                    int key;
-                    cout << "Введите ключ для поиска: ";
-                    cin >> key;
-                    cin.ignore();
-                    AVLNode* found = avlFind(avlTree, key);
-                    if (found) {
-                        cout << "Элемент с ключом " << key << " найден." << endl;
-                    }
-                    else {
-                        cout << "Элемент с ключом " << key << " не найден." << endl;
-                    }
-                }
-                else if (avlCommand == "EXIT") {
-                    break;
+                avlTree = avlRemove(avlTree, key);
+            }
+            else if (avlCommand == "PRINT") {
+                cout << "Дерево (по уровням): \n";
+                avlPrintByLevels(avlTree);
+                cout << endl;
+            }
+            else if (avlCommand == "SAVE") {
+                string filename;
+                cout << "Введите имя файла для сохранения: ";
+                getline(cin, filename);
+                ofstream file(filename);
+                if (file.is_open()) {
+                    avlSaveToFile(avlTree, file);
+                    file.close();
+                    cout << "Дерево сохранено в файл." << endl;
                 }
                 else {
-                    cout << "Неизвестная команда." << endl;
+                    cout << "Ошибка открытия файла!" << endl;
                 }
             }
+            else if (avlCommand == "LOAD") {
+                string filename;
+                cout << "Введите имя файла для загрузки: ";
+                getline(cin, filename);
+                ifstream file(filename);
+                if (file.is_open()) {
+                    avlTree = avlLoadFromFile(avlTree, file);
+                    file.close();
+                    cout << "Дерево загружено из файла." << endl;
+                }
+                else {
+                    cout << "Ошибка открытия файла!" << endl;
+                }
+            }
+            else if (avlCommand == "TFIND") {
+                string input;
+                int key;
+                cout << "Введите ключ для поиска: ";
+                while (true) {
+                    getline(cin, input);
+                    stringstream ss(input);
+                    if (ss >> key && ss.eof()) { // Проверяем, удалось ли успешно считать целое число и это конец строки
+                        break; // Выходим из цикла, если ввод корректный
+                    }
+                    else {
+                        cout << "Неверный ввод. Пожалуйста, введите целое число: ";
+                    }
+                }
+                AVLNode* found = avlFind(avlTree, key);
+                if (found) {
+                    cout << "Элемент с ключом " << key << " найден." << endl;
+                }
+                else {
+                    cout << "Элемент с ключом " << key << " не найден." << endl;
+                }
+            }
+            else if (avlCommand == "EXIT") {
+                break;
+            }
+            else {
+                cout << "Неизвестная команда." << endl;
+            }
         }
+}
+
         // Хэш-таблица
         else if (command == "hashtable") {
         string hashTableCommand;
