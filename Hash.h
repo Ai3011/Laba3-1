@@ -49,7 +49,7 @@ string get(HashTable& ht, const string& key) { // получение значе�
 void insert(HashTable& ht, const string& key, const string& value) { // добавление элемента
     unsigned index = hashFunction(key); // вычисляем индекс через хэш-функцию
     if (get(ht, key) != "") {
-        cout << "Такой ключ уже есть.\n";
+        cout << "This key is not unique.\n";
         return;
     }
     HNode* newNode = new HNode{ key, value, ht.table[index] }; // создаём новый первый узел для индекса
@@ -107,7 +107,7 @@ void printHashTable(const HashTable& ht) {
     for (int i = 0; i < TABLE_SIZE; i++) {
         HNode* curNode = ht.table[i]; // Берем первый элемент цепочки
         if (curNode) { // Если в цепочке есть элементы
-            cout << "Индекс " << i << " – ";
+            cout << "Index " << i << "-";
             while (curNode) {
                 cout << "[" << curNode->key << ": " << curNode->value << "] ";
                 curNode = curNode->next; // Переходим к следующему узлу
