@@ -33,28 +33,29 @@ void initHashTable(HashTable& ht) {
         ht.table[i] = nullptr; // Инициализируем каждый элемент nullptr
     }
 }
-
-void insert(hashTable& ht, const string& key, const string& item) { // добавление элемента
-    unsigned index = func(key); // вычисляем индекс через хэш-функцию
-    if (get(ht, key) != "") {
-        cout << "Такой ключ уже есть.\n";
-        return;
-    }
-    hNode* newNode = new hNode{ key, item, table[index] }; // создаём новый первый узел для индекса
-    table[index] = newNode; // новый узел становится первым
-}
-
-string get(hashTable& ht, const string& key) { // получение значения элемента по ключу
-    unsigned hashIndex = func(key); // индекс через хэш-функцию
-    hNode* current = ht.table[hashIndex];   // указатель на первый элемент цепочки
+string get(HashTable& ht, const string& key) { // получение значения элемента по ключу
+    unsigned hashIndex = hashFunction(key); // индекс через хэш-функцию
+    HNode* current = ht.table[hashIndex];   // указатель на первый элемент цепочки
     while (current) { // ищем узел
         if (current->key == key) {
-            return current->item; // возвращаем значение узла
+            return current->value; // возвращаем значение узла
         }
         current = current->next;
     }
     return ""; // если ключ не найден, возвращаем пустую строку
 }
+
+
+void insert(HashTable& ht, const string& key, const string& value) { // добавление элемента
+    unsigned index = hashFunction(key); // вычисляем индекс через хэш-функцию
+    if (get(ht, key) != "") {
+        cout << "Такой ключ уже есть.\n";
+        return;
+    }
+    HNode* newNode = new HNode{ key, value, ht.table[index] }; // создаём новый первый узел для индекса
+    ht.table[index] = newNode; // новый узел становится первым
+}
+
 
 // Функция для удаления элемента по ключу
 // Находим элемент и удаляем его из цепочки, освобождая память
