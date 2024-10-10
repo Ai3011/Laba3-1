@@ -485,7 +485,7 @@ int main() {
         else if (command == "hashtable") {
         string hashTableCommand;
         while (true) {
-            cout << "Команды для хэш-таблицы (HSET, HGET, HREMOVE, HCLEAR, PRINT, LOAD, SAVE, EXIT): ";
+            cout << "Команды для хэш-таблицы (HSET, HGET, HREMOVE, PRINT, LOAD, SAVE, EXIT): ";
             getline(cin, hashTableCommand);
 
             if (hashTableCommand == "HSET") {
