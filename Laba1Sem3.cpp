@@ -1,5 +1,7 @@
 #include <iostream>
 #include <sstream>
+#include <string>
+#include <fstream>
 #include "Array.h"
 #include "List.h"
 #include "Dlist.h"
