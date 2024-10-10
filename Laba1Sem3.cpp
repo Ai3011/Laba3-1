@@ -1,5 +1,4 @@
 #include <iostream>
-#include <limits>
 #include <sstream>
 #include "Array.h"
 #include "List.h"
@@ -496,23 +495,18 @@ int main() {
                 cout << "Введите значение: ";
                 getline(cin, value);
                 insert(ht, key, value);
-                cout << "Элемент добавлен." << endl;
             }
             else if (hashTableCommand == "HGET") {
                 string key;
-                int index;
                 cout << "Введите ключ: ";
                 getline(cin, key);
-                cout << "Введите индекс узла (1 для первого, 2 для второго и т.д.): ";
-                cin >> index;
-                cin.ignore(); // Игнорируем оставшийся символ новой строки
 
-                try {
-                    string value = get(ht, key, index);
+                string value = get(ht, key);
+                if (value != "") {
                     cout << "Значение: " << value << endl;
                 }
-                catch (const runtime_error& e) {
-                    cerr << "Ошибка: " << e.what() << endl; // Обработка исключения и вывод сообщения об ошибке
+                else {
+                    cout << "Элемент не найден." << endl;
                 }
             }
             else if (hashTableCommand == "HREMOVE") {
@@ -522,21 +516,16 @@ int main() {
                 remove(ht, key);
                 cout << "Элемент удалён." << endl;
             }
-            else if (hashTableCommand == "HCLEAR") {
-                clearHashTable(ht);
-                cout << "Хэш-таблица очищена." << endl;
-                initHashTable(ht); // Реинициализация после очистки
-            }
             else if (hashTableCommand == "PRINT") {
                 cout << "Содержимое хэш-таблицы:" << endl;
-                printHashTable(ht); // Выводим содержимое хэш-таблицы
+                printHashTable(ht);
             }
             else if (hashTableCommand == "LOAD") {
                 string filename;
                 cout << "Введите имя файла для загрузки: ";
                 getline(cin, filename);
                 try {
-                    loadFromFile(ht, filename); // Загрузка хэш-таблицы из файла
+                    loadFromFile(ht, filename);
                     cout << "Хэш-таблица успешно загружена из файла " << filename << endl;
                 }
                 catch (const runtime_error& e) {
@@ -548,7 +537,7 @@ int main() {
                 cout << "Введите имя файла для сохранения: ";
                 getline(cin, filename);
                 try {
-                    saveToFileAndClear(ht, filename); // Сохранение в файл
+                    saveToFileAndClear(ht, filename);
                     cout << "Хэш-таблица успешно сохранена в файл " << filename << endl;
                 }
                 catch (const runtime_error& e) {
@@ -556,7 +545,7 @@ int main() {
                 }
             }
             else if (hashTableCommand == "EXIT") {
-                clearHashTable(ht); // Очистка перед выходом
+                clearHashTable(ht);
                 break;
             }
             else {
@@ -564,6 +553,7 @@ int main() {
             }
         }
 }
+
         // Завершение программы
         else if (command == "exit") {
         break;
