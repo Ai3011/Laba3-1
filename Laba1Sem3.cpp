@@ -171,6 +171,17 @@ int main() {
                 else if (listCommand == "LDELTAIL") {
                     linkedList.removeTail();
                 }
+                else if (listCommand == "LDELVALUE") {  // Команда для удаления по значению
+                    string element;
+                    cout << "Введите элемент для удаления: ";
+                    getline(cin, element);
+                    bool removed = linkedList.removeByValue(element); // Удаляем элемент по значению
+                    if (removed) {
+                        cout << "Элемент '" << element << "' был удален." << endl;
+                    } else {
+                        cout << "Элемент '" << element << "' не найден." << endl;
+                    }
+                } 
                 else if (listCommand == "PRINT") {
                     linkedList.read();
                 }
@@ -210,7 +221,7 @@ int main() {
         else if (command == "doubly_list") {
             string doublyListCommand;
             while (true) {
-                cout << "Команды для двусвязного списка (DLPUSHHEAD, DLPUSHTAIL, DLDELHEAD, DLDELTAIL, PRINT, DLFIND, SAVE, LOAD, EXIT): ";
+                cout << "Команды для двусвязного списка (DLPUSHHEAD, DLPUSHTAIL, DLDELHEAD, DLDELTAIL, PRINT, DLFIND, DLDELVALUE, SAVE, LOAD, EXIT): ";
                 getline(cin, doublyListCommand);
 
                 if (doublyListCommand == "DLPUSHHEAD") {
@@ -231,6 +242,18 @@ int main() {
                 else if (doublyListCommand == "DLDELTAIL") {
                     doublyLinkedList.removeTail();
                 }
+                else if (doublyListCommand == "DDELVALUE") {  // Команда для удаления по значению
+                    string element;
+                    cout << "Введите элемент для удаления: ";
+                    getline(cin, element); 
+                    bool removed = doublyLinkedList.removeValue(element); // Удаляем элемент по значению
+                    if (removed) {
+                        cout << "Элемент '" << element << "' был удален." << endl;
+                    } else {
+                        cout << "Элемент '" << element << "' не найден." << endl;
+                    }
+                } 
+
                 else if (doublyListCommand == "PRINT") {
                     doublyLinkedList.read();
                 }
